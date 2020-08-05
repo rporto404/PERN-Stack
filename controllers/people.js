@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const data = [
+let data = [
     {
         id:1,
         name:'Matt',
@@ -29,12 +29,20 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    data.splice(req.params.id, 1);
+    data = data.filter(person => person.id != req.params.id, 1);
     res.json(data);
 });
 
 router.put('/:id', (req, res) => {
-    data[req.params.id] = req.body;
+    req.body.id = req.params.id;
+
+    data = data.map((person) => {
+        if(person.id == req.params.id){
+            return req.body
+        } else {
+            return person
+        }
+    })
     res.json(data);
 });
 
