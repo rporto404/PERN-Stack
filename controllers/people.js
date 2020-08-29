@@ -1,26 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
-let data = [
-    {
-        id:1,
-        name:'Matt',
-        age: 38
-    },
-    {
-        id:2,
-        name:'Sally',
-        age: 54
-    },
-    {
-        id:3,
-        name:'Xanathar',
-        age: 17330
-    },
-];
+const postgres = require('../postgres.js');
 
 router.get('/', (req, res) => {
-    res.json(data)
+    postgres.query('SELECT * FROM people ORDER BY id ASC;', (err, results) => {
+        res.json(results.rows)
+    });
 });
 
 router.post('/', (req, res) => {
