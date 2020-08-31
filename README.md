@@ -11,7 +11,7 @@
 1. clone your fork of this repo onto your local computer somewhere outside the class repo
 1. `cd` into the local repo
 1. open your postgres app and start the db server
-1. back in the, run `nodemon`
+1. back in the terminal, run `nodemon`
 
 #### if you deleted your old "contacts" database from class
 
@@ -28,7 +28,7 @@
 
 ### in your terminal
 
-1. run `heroku create`
+1. run `heroku create` (take note of the app name for later)
 1. run `git push heroku master`
 
 ### in your browser
