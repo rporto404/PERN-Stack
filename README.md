@@ -60,4 +60,4 @@ go to http://localhost:3000/ to view local app (note this uses your local databa
     1. `INSERT INTO people ( name, age ) VALUES ( 'Zanthar', 4892 );`
 1. exit heroku psql with `\q`
 1. run `git push heroku master`
-1. run `heroku open` to see app
+1. run `heroku open` to see app (note this uses your heroku postgres database, which will have different data than your local db)
