@@ -10,8 +10,10 @@
 
 1. clone your fork of this repo onto your local computer somewhere outside the class repo
 1. `cd` into the local repo
+
+### local postgres
+
 1. open your postgres app and start the db server
-1. back in the terminal, run `nodemon`
 
 #### if you deleted your old "contacts" database from class
 
@@ -24,12 +26,19 @@
     1. `INSERT INTO people ( name, age ) VALUES ( 'Sally', 54 );`
     1. `INSERT INTO people ( name, age ) VALUES ( 'Zanthar', 4892 );`
 
+### in your terminal
+
+1. run `nodemon`
+
+### in your browser
+
+go to http://localhost:3000/ to view local app (note this uses your local database)
+
 ## set up heroku
 
 ### in your terminal
 
 1. run `heroku create` (take note of the app name for later)
-1. run `git push heroku master`
 
 ### in your browser
 
@@ -50,4 +59,5 @@
     1. `INSERT INTO people ( name, age ) VALUES ( 'Sally', 54 );`
     1. `INSERT INTO people ( name, age ) VALUES ( 'Zanthar', 4892 );`
 1. exit heroku psql with `\q`
+1. run `git push heroku master`
 1. run `heroku open` to see app
