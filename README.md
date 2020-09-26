@@ -64,7 +64,7 @@ go to http://localhost:3000/ to view local app (note this uses your local databa
 
 ## Rerunning local after initial set up
 
-Open PostgresApp and start the db
+Open Postgres app and start the db
 
 In terminal:
 
