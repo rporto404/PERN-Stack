@@ -61,3 +61,14 @@ go to http://localhost:3000/ to view local app (note this uses your local databa
 1. exit heroku psql with `\q`
 1. run `git push heroku master`
 1. run `heroku open` to see app (note this uses your heroku postgres database, which will have different data than your local db)
+
+## Rerunning local after initial set up
+
+Open PostgresApp and start the db
+
+In terminal:
+
+1. Go to repo root dir
+1. Run `nodemon`
+
+In Browser go to http://localhost:3000/
