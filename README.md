@@ -10,12 +10,15 @@
 
 1. clone your fork of this repo onto your local computer somewhere outside the class repo
 1. `cd` into the local repo
+1. don't forget to run `npm install`
 
 ### local postgres
 
 1. open your postgres app and start the db server
 
 #### if you deleted your old "contacts" database from class
+
+1. in your terminal, if running `psql` gives you "command not found", run `ln -s /Applications/Postgres.app/Contents/Versions/latest/bin/psql /usr/local/bin/psql`
 
 1. in the postgres app, double click one of the existing databases to enter `psql`
 1. once inside `psql`, run:
@@ -34,6 +37,8 @@
 
 go to http://localhost:3000/ to view local app (note this uses your local database)
 
+confirm all CRUD functionality
+
 ## set up heroku
 
 ### in your terminal
@@ -44,14 +49,13 @@ go to http://localhost:3000/ to view local app (note this uses your local databa
 
 1. go to heroku.com in your browser and sign in
 1. find this newly created heroku app in your list of available apps and click on it
-1. go to resources
+1. go to resources to use the `Add-ons` search bar
 1. search for postgres and choose Heroku Postgres
 1. choose "Hobby Dev - Free"
 1. click provision
 
 ### in your terminal
 
-1. in your terminal, if running `psql` gives you "command not found", run `ln -s /Applications/Postgres.app/Contents/Versions/latest/bin/psql /usr/local/bin/psql`
 1. run `heroku pg:psql`
 1. once inside heroku's psql, run
     1. `CREATE TABLE people (id SERIAL, name VARCHAR(16), age INT);`
