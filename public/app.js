@@ -1,117 +1,137 @@
 class App extends React.Component {
     state = {
-        people:[]
+        products:[]
     }
 
     componentDidMount = () => {
-        axios.get('/people').then(
+        axios.get('/products').then(
             (response) => {
                 this.setState({
-                    people:response.data
+                    products:response.data
                 })
             }
         )
     }
 
-    createPerson = (event) => {
+    createProduct = (event) => {
         event.preventDefault();
         axios.post(
-            '/people',
+            '/products',
             {
-                name:this.state.newPersonName,
-                age:this.state.newPersonAge,
+                name:this.state.newProductName,
+                category:this.state.newProductCategory,
+                price:this.state.newProductPrice,
             }
         ).then(
             (response) => {
                 this.setState({
-                    people:response.data
+                    products:response.data
                 })
             }
         )
     }
 
-    changeNewPersonAge = (event) => {
+    changeNewProductPrice = (event) => {
         this.setState({
-            newPersonAge:event.target.value
+            newProductPrice:event.target.value
         });
     }
 
-    changeNewPersonName = (event) => {
+    changeNewProductCategory = (event) => {
         this.setState({
-            newPersonName:event.target.value
+            newProductCategory:event.target.value
         });
     }
 
-    deletePerson = (event) => {
-        axios.delete('/people/' + event.target.value).then(
+    changeNewProductName = (event) => {
+        this.setState({
+            newProductName:event.target.value
+        });
+    }
+
+    deleteProduct = (event) => {
+        axios.delete('/products/' + event.target.value).then(
             (response) => {
                 this.setState({
-                    people:response.data
+                    products:response.data
                 })
             }
         )
 
     }
 
-    updatePerson = (event) => {
+    updateProduct = (event) => {
         event.preventDefault();
         const id = event.target.getAttribute('id');
         axios.put(
-            '/people/' + id,
+            '/products/' + id,
             {
-                name:this.state.updatePersonName,
-                age:this.state.updatePersonAge,
+                name:this.state.updateProductName,
+                category:this.state.updateProductCategory,
+                price:this.state.updateProductPrice,
             }
         ).then(
             (response) => {
                 this.setState({
-                    people:response.data,
+                    products:response.data,
                     name:'',
-                    age:null,
+                    category:'',
+                    price:null,
                 })
             }
         )
     }
 
-    changeUpdatePersonName = (event) => {
+    changeUpdateProductName = (event) => {
         this.setState(
             {
-                updatePersonName:event.target.value
+                updateProductName:event.target.value
             }
         )
     }
 
-    changeUpdatePersonAge = (event) => {
+    changeUpdateProductCategory = (event) => {
         this.setState(
             {
-                updatePersonAge:event.target.value
+                updateProductCategory:event.target.value
+            }
+        )
+    }
+
+    changeUpdateProductPrice = (event) => {
+        this.setState(
+            {
+                updateProductPrice:event.target.value
             }
         )
     }
 
     render = () => {
         return <div>
-            <h2>Create Person</h2>
-            <form onSubmit={this.createPerson}>
-                <input onKeyUp={this.changeNewPersonName} type="text" placeholder="name" /><br/>
-                <input onKeyUp={this.changeNewPersonAge} type="number" placeholder="age" /><br/>
-                <input type="submit" value="Create Person" />
+            <h2>Add An Exciting New Product to Our Lineup</h2>
+            <form id='add' onSubmit={this.createProduct}>
+                <input onKeyUp={this.changeNewProductName} type="text" placeholder="name" /><br/>
+                <input onKeyUp={this.changeNewProductCategory} type="text" placeholder="category" /><br/>
+                <input onKeyUp={this.changeNewProductPrice} type="number" placeholder="price" /><br/>
+                <input type="submit" value="Create Product" />
             </form>
-            <h2>List of People</h2>
+            <h2>Browse Our Catalogue of Products</h2>
             <ul>
                 {
-                    this.state.people.map(
-                        (person, index) => {
+                    this.state.products.map(
+                        (product, index) => {
                             return <li key={index}>
 
-                                {person.name}: {person.age}
+                                {product.name}: ${product.price}<br/>
+                                Category: {product.category}<br/>
 
-                                <button value={person.id} onClick={this.deletePerson}>DELETE</button>
+                                <button value={product.id} onClick={this.deleteProduct}>DELETE</button>
 
-                                <form id={person.id} onSubmit={this.updatePerson}>
-                                    <input onKeyUp={this.changeUpdatePersonName} type="text" placeholder="name"/><br/>
-                                    <input onKeyUp={this.changeUpdatePersonAge} type="number" placeholder="age"/><br/>
-                                    <input type="submit" value="Update Person"/>
+                                <form id={product.id} onSubmit={this.updateProduct}>
+                                    <input onKeyUp={this.changeUpdateProductName} type="text" placeholder="name"/><br/>
+                                    <input onKeyUp={this.changeUpdateProductCategory} type="text" placeholder="category"/><br/>
+                                    <input onKeyUp={this.changeUpdateProductPrice} type="number" placeholder="price"/><br/>
+                                    <input type="submit" value="Update Product"/>
                                 </form>
                             </li>
                         }
